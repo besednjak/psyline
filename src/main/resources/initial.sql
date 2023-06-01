@@ -1,1 +1,1 @@
-INSERT INTO users VALUES(1, 'Pepito Juanetes');
+INSERT INTO patients VALUES('pJuanetes', '1999-12-03', 'Juanetes',  'Pepito');
