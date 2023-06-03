@@ -14,12 +14,12 @@ public class AppointmentDAO {
     private Integer id;
 
     @Column(nullable = false)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-ddTHH:mm:ss")//capaz la T no va hay que probar esto
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-ddTHH:mm:ssZ")//capaz la T no va hay que probar esto
     private LocalDateTime dateTime;
 
     @Column(nullable = false)
     private Double price;
-    
+
     @ManyToOne
     private TherapistDAO therapist;
 
