@@ -1,14 +1,14 @@
 package com.uade.psyline.presentation.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
+@EqualsAndHashCode
 public class PatientDTO {
 
     private String userName;

@@ -20,7 +20,6 @@ public class PatientUsecase implements PatientService {
     @Override
     @Transactional
     public PatientDTO postPatient(PatientDTO newPatientDTO) {
-
         PatientDAO newPatientDAO = mapper.map(newPatientDTO, PatientDAO.class);
         patientRepository.save(newPatientDAO);
         return mapper.map(newPatientDAO, PatientDTO.class);
@@ -28,16 +27,14 @@ public class PatientUsecase implements PatientService {
 
     @Override
     public PatientDTO getPatient(String userName) {
-        PatientDAO patientFoundDAO = patientRepository.findPatientByUserName(userName);
-        if(patientFoundDAO == null) {
-            throw new PatientNotFoundException();
-        }
+        PatientDAO patientFoundDAO = this.findPatientByUserName(userName);
         return mapper.map(patientFoundDAO, PatientDTO.class);
     }
 
     @Override
+    @Transactional
     public PatientDTO updatePatient(PatientDTO updatedPatientDTO) {
-        this.validatePatientExistence(updatedPatientDTO.getUserName());
+        this.findPatientByUserName(updatedPatientDTO.getUserName());
         PatientDAO updatedPatientDAO = mapper.map(updatedPatientDTO, PatientDAO.class);
         patientRepository.save(updatedPatientDAO);
         return mapper.map(updatedPatientDAO, PatientDTO.class);
@@ -45,18 +42,16 @@ public class PatientUsecase implements PatientService {
 
     @Override
     public PatientDTO deletePatient(String userName) {
-        PatientDAO patientFoundDAO = patientRepository.findPatientByUserName(userName);
-        if(patientFoundDAO == null) {
-            throw new PatientNotFoundException();
-        }
+        PatientDAO patientFoundDAO = this.findPatientByUserName(userName);
         patientRepository.delete(patientFoundDAO);
         return mapper.map(patientFoundDAO, PatientDTO.class);
     }
 
-    private void validatePatientExistence(String userName) {
+    private PatientDAO findPatientByUserName(String userName) {
         PatientDAO patientFoundDAO = patientRepository.findPatientByUserName(userName);
         if(patientFoundDAO == null) {
             throw new PatientNotFoundException();
         }
+        return patientFoundDAO;
     }
 }
