@@ -1,6 +1,7 @@
 package com.uade.psyline.presentation.controller;
 
 import com.uade.psyline.application.exception.PatientNotFoundException;
+import com.uade.psyline.application.exception.TherapistNotFoundException;
 import com.uade.psyline.presentation.exception.ApiError;
 import com.uade.psyline.presentation.exception.ApiException;
 import org.slf4j.Logger;
@@ -90,5 +91,10 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(PatientNotFoundException.class)
     public ResponseEntity<ApiError> patientNotFound(PatientNotFoundException e) {
         return new ResponseEntity<>(new ApiError("patient_not_found", e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(TherapistNotFoundException.class)
+    public ResponseEntity<ApiError> therapistNotFound(TherapistNotFoundException e) {
+        return new ResponseEntity<>(new ApiError("therapist_not_found", e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 }

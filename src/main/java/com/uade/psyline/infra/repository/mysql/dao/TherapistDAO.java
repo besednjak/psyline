@@ -1,8 +1,10 @@
 package com.uade.psyline.infra.repository.mysql.dao;
 
 import com.uade.psyline.domain.address.CABANeighborhood;
-import com.uade.psyline.domain.therapist.AppointmentType;
+import com.uade.psyline.domain.therapist.AppointmentModality;
+import com.uade.psyline.domain.therapist.Specialty;
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -10,6 +12,11 @@ import java.util.Set;
 
 @Entity
 @Table(name="therapists")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class TherapistDAO {
 
     @Id
@@ -27,11 +34,15 @@ public class TherapistDAO {
     private LocalDate birthDate;
 
     @Column(nullable = false)
-    private Integer licence;
+    private String licence;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private AppointmentType appointmentType;
+    private Specialty specialty;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private AppointmentModality appointmentModality;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -42,6 +53,12 @@ public class TherapistDAO {
 
     @Column(nullable = false)
     private String email;
+
+    @Column(nullable = true)
+    private String bio;
+
+    @Column(nullable = true)
+    private Double appointmentPrice;
 
     @OneToMany(mappedBy = "therapist")
     private Set<FollowUpDAO> appointments;

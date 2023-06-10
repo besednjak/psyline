@@ -1,6 +1,6 @@
 package com.uade.psyline.domain.therapist;
 
-public enum AppointmentType {
+public enum AppointmentModality {
 
     IN_PERSON,
     VIRTUAL,

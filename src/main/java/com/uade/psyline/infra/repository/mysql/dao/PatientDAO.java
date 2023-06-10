@@ -30,9 +30,15 @@ public class PatientDAO {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
+    @Column(nullable = false)
+    private String email;
+
     @OneToMany(mappedBy = "patient")
     private Set<FollowUpDAO> appointments;
 
     @OneToMany(mappedBy = "patient")
     private Set<FollowUpDAO> followUps;
+
+    @OneToMany(mappedBy = "patient")
+    private Set<JournalEntryDAO> journal;
 }

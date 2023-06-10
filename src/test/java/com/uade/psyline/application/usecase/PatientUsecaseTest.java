@@ -114,7 +114,8 @@ class PatientUsecaseTest {
                 "pJuanetes",
                 "Pepito",
                 "Juanetes",
-                LocalDate.of(1999, 12, 3)
+                LocalDate.of(1999, 12, 3),
+                "pjuanetes@uade.edu.ar"
         );
     }
 
@@ -124,6 +125,7 @@ class PatientUsecaseTest {
                 .name("Pepito")
                 .lastName("Juanetes")
                 .birthDate(LocalDate.of(1999, 12, 3))
+                .email("pjuanetes@uade.edu.ar")
                 .build();
     }
 }

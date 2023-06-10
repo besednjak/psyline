@@ -1,5 +1,7 @@
 package com.uade.psyline.infra.repository.mysql.dao;
 
+import com.uade.psyline.domain.appointment.Status;
+import com.uade.psyline.domain.appointment.Type;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,6 +21,17 @@ public class AppointmentDAO {
 
     @Column(nullable = false)
     private Double price;
+
+    @Column(nullable = false)
+    private boolean paid;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @ManyToOne
     private TherapistDAO therapist;
