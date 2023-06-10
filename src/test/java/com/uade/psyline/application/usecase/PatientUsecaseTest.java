@@ -115,8 +115,7 @@ class PatientUsecaseTest {
                 "Pepito",
                 "Juanetes",
                 LocalDate.of(1999, 12, 3),
-                "pjuanetes@uade.edu.ar"
-        );
+                "pjuanetes@uade.edu.ar");
     }
 
     private PatientDAO getPatientDAO() {
