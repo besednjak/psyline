@@ -37,7 +37,7 @@ public enum CABANeighborhood {
     VERSALLES,
     VILLA_CRESPO,
     VILLA_DEL_PARQUE,
-    VILLA_DEVAOTO,
+    VILLA_DEVOTO,
     VILLA_GRAL_MITRE,
     VILLA_LUGANO,
     VILLA_LURO,
@@ -48,9 +48,4 @@ public enum CABANeighborhood {
     VILLA_SANTA_RITA,
     VILLA_SOLDATI,
     VILLA_URQUIZA;
-
-    @Override
-    public String toString() {
-        return name().charAt(0) + name().substring(1).toLowerCase().replace("_", " ");
-    }
 }

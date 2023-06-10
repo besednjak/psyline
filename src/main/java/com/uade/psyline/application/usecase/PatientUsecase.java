@@ -3,9 +3,13 @@ package com.uade.psyline.application.usecase;
 import com.uade.psyline.application.exception.PatientNotFoundException;
 import com.uade.psyline.application.service.PatientService;
 import com.uade.psyline.infra.repository.mysql.dao.PatientDAO;
+import com.uade.psyline.infra.repository.mysql.dao.TherapistDAO;
 import com.uade.psyline.presentation.dto.PatientDTO;
 import com.uade.psyline.infra.repository.mysql.jpa.PatientRepository;
+import com.uade.psyline.presentation.dto.TherapistDTO;
 import jakarta.transaction.Transactional;
+import org.modelmapper.Conditions;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
@@ -34,10 +38,14 @@ public class PatientUsecase implements PatientService {
     @Override
     @Transactional
     public PatientDTO updatePatient(PatientDTO updatedPatientDTO) {
-        this.findPatientByUserName(updatedPatientDTO.getUserName());
+        PatientDAO existingPatientDAO = this.findPatientByUserName(updatedPatientDTO.getUserName());
         PatientDAO updatedPatientDAO = mapper.map(updatedPatientDTO, PatientDAO.class);
-        patientRepository.save(updatedPatientDAO);
-        return mapper.map(updatedPatientDAO, PatientDTO.class);
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
+        mapper.map(updatedPatientDAO, existingPatientDAO);
+        patientRepository.save(existingPatientDAO);
+
+        return mapper.map(existingPatientDAO, PatientDTO.class);
     }
 
     @Override

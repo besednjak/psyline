@@ -1,1 +1,35 @@
-INSERT INTO patients VALUES('pJuanetes', '1999-12-03', 'Juanetes',  'Pepito');
+INSERT INTO patients VALUES
+    ('pJuanetes', '1999-12-03', 'pjuanetes@uade.edu.ar', 'Juanetes',  'Pepito'),
+    ('juanito01', '2004-02-22', 'juanito01@uade.edu.ar', 'González', 'Juan'),
+    ('maria22', '2003-10-08', 'maria22@uade.edu.ar', 'Rodríguez', 'María'),
+    ('andres_89', '2001-09-12', 'andres_89@uade.edu.ar', 'Martínez', 'Andrés'),
+    ('sofialopez', '2000-11-03', 'sofialopez@uade.edu.ar', 'López', 'Sofía'),
+    ('ale_perez', '2002-05-18', 'ale_perez@uade.edu.ar', 'Pérez', 'Alejandro'),
+    ('v.gomez', '2001-08-14', 'v.gomez@uade.edu.ar', 'Gómez', 'Valentina'),
+    ('carlos.s', '2000-02-01', 'carlos.s@uade.edu.ar', 'Sánchez', 'Carlos'),
+    ('lfernandez', '1997-11-20', 'lfernandez@uade.edu.ar', 'Fernández', 'Laura'),
+    ('gabrieltorres', '1997-04-04', 'gabrieltorres@uade.edu.ar', 'Torres', 'Gabriel'),
+    ('bella_ram', '2002-09-29', 'bella_ram@uade.edu.ar', 'Ramírez', 'Isabella'),
+    ('pedromendo', '2003-03-27', 'pedromendo@uade.edu.ar', 'Mendoza', 'Pedro'),
+    ('cami_vargas', '2001-06-21', 'cami_vargas@uade.edu.ar', 'Vargas', 'Camila'),
+    ('javier.castro', '2000-12-10', 'javier.castro@uade.edu.ar', 'Castro', 'Javier'),
+    ('nataliah', '1999-01-15', 'nataliah@uade.edu.ar', 'Herrera', 'Natalia'),
+    ('diegosilva', '2001-06-14', 'diegosilva@uade.edu.ar', 'Silva', 'Diego'),
+    ('ana23', '1998-08-03', 'ana23@uade.edu.ar', 'Torres', 'Ana'),
+    ('dancord', '1996-06-22', 'dancord@uade.edu.ar', 'Córdoba', 'Daniel'),
+    ('gabiguz', '1995-03-15', 'gabiguz@uade.edu.ar', 'Guzmán', 'Gabriela'),
+    ('luiso', '2002-11-26', 'luiso@uade.edu.ar', 'Ortiz', 'Luis'),
+    ('vicky.rios', '2001-09-05', 'vicky.rios@uade.edu.ar', 'Ríos', 'Victoria');
+
+INSERT INTO therapists
+VALUES
+    ('jperez', 'IN_PERSON',1.11111,'', '1992-03-15', 'jperez@uade.edu.ar', 'Pérez', '0112345678', 'Juan', '01112345678', 'PARQUE_AVELLANEDA', 'PSYCHOANALYSIS'),
+    ('mlopez', 'VIRTUAL',2.0983743,'', '1985-09-10', 'mlopez@uade.edu.ar', 'López', '0223456789', 'María', '01123456789', 'BELGRANO', 'COGNITIVE_BEHAVIORAL_THERAPY'),
+    ('rgonzalez', 'HYBRID',40000.2,'', '1990-06-25', 'rgonzalez@uade.edu.ar', 'González', '0334567890', 'Roberto', '01134567890', 'BELGRANO', 'GROUP_THERAPY'),
+    ('fsanchez', 'VIRTUAL',6.66,'', '1988-11-02', 'fsanchez@uade.edu.ar', 'Sánchez', '0445678901', 'Fernanda', '01145678901', 'ALMAGRO', 'FAMILY_THERAPY'),
+    ('pgomez', 'IN_PERSON',0,'', '1994-04-18', 'pgomez@uade.edu.ar', 'Gómez', '0556789012', 'Pablo', '01156789012', 'ALMAGRO', 'PSYCHOANALYSIS'),
+    ('cfernandez', 'HYBRID',111,'', '1991-07-05', 'cfernandez@uade.edu.ar', 'Fernández', '0667890123', 'Carolina', '01167890123', 'AGRONOMIA', 'COGNITIVE_BEHAVIORAL_THERAPY'),
+    ('mmartinez', 'VIRTUAL',8080,'', '1987-12-22', 'mmartinez@uade.edu.ar', 'Martínez', '0779012345', 'Miguel', '01178901234', 'PARQUE_AVELLANEDA', 'GROUP_THERAPY'),
+    ('lgarcia', 'IN_PERSON',666,'', '1993-08-09', 'lgarcia@uade.edu.ar', 'García', '0880123456', 'Lucía', '01189012345', 'AGRONOMIA', 'FAMILY_THERAPY'),
+    ('romigonzalez', 'HYBRID',007,'', '1989-02-26', 'rgonzalez@uade.edu.ar', 'González', '0991234567', 'Romina', '01190123456', 'BELGRANO', 'PSYCHOANALYSIS'),
+    ('mgomez', 'IN_PERSON',7373,'', '1990-05-17', 'mgomez@uade.edu.ar', 'Gómez', '0102345678', 'Marcelo', '01101234567', 'BELGRANO', 'COGNITIVE_BEHAVIORAL_THERAPY');
