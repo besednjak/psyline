@@ -1,6 +1,7 @@
 package com.uade.psyline.infra.repository.mysql.dao;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -8,6 +9,11 @@ import java.util.Set;
 
 @Entity
 @Table(name="patients")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class PatientDAO {
 
     @Id
