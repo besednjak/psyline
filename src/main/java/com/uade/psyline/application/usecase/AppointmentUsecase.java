@@ -11,12 +11,15 @@ import com.uade.psyline.infra.repository.mysql.jpa.AppointmentRepository;
 import com.uade.psyline.infra.repository.mysql.jpa.PatientRepository;
 import com.uade.psyline.infra.repository.mysql.jpa.TherapistRepository;
 import com.uade.psyline.presentation.dto.AppointmentDTO;
+import com.uade.psyline.presentation.dto.TherapistDTO;
 import jakarta.transaction.Transactional;
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AppointmentUsecase implements AppointmentService {
@@ -37,6 +40,7 @@ public class AppointmentUsecase implements AppointmentService {
         newAppointmentDAO.setPatient(patientDAO);
         newAppointmentDAO.setTherapist(therapistDAO);
         appointmentRepository.save(newAppointmentDAO);
+
         return mapper.map(newAppointmentDAO, AppointmentDTO.class);
     }
 
@@ -64,6 +68,14 @@ public class AppointmentUsecase implements AppointmentService {
         AppointmentDAO appointmentFoundDAO = this.findAppointmentById(appointmentId);
         appointmentRepository.delete(appointmentFoundDAO);
         return mapper.map(appointmentFoundDAO, AppointmentDTO.class);
+    }
+
+    @Override
+    public List<AppointmentDTO> getTherapistAppointments(String therapistUserName) {
+        TherapistDAO therapistDAO = findTherapistByUserName(therapistUserName);
+
+        return therapistDAO.getAppointments().stream()
+                .map(appointmentDAO -> mapper.map(appointmentDAO, AppointmentDTO.class)).toList();
     }
 
     private AppointmentDAO findAppointmentById(Integer id) {

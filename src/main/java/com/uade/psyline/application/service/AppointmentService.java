@@ -1,7 +1,8 @@
 package com.uade.psyline.application.service;
 
-import com.uade.psyline.presentation.dto.JournalEntryDTO;
 import com.uade.psyline.presentation.dto.AppointmentDTO;
+
+import java.util.List;
 
 public interface AppointmentService {
 
@@ -12,4 +13,6 @@ public interface AppointmentService {
     AppointmentDTO updateAppointment(AppointmentDTO updatedAppointmentDTO);
 
     AppointmentDTO deleteAppointment(Integer appointmentId);
+
+    List<AppointmentDTO> getTherapistAppointments(String therapistUserName);
 }
