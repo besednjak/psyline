@@ -1,6 +1,7 @@
 package com.uade.psyline.presentation.controller;
 
 import com.uade.psyline.application.service.PatientService;
+import com.uade.psyline.presentation.dto.JournalEntryDTO;
 import com.uade.psyline.presentation.dto.PatientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,4 +34,10 @@ public class PatientController {
     public ResponseEntity<PatientDTO> deletePatient(@PathVariable String userName) {
         return new ResponseEntity<>(patientService.deletePatient(userName), HttpStatus.OK);
     }
+
+    @PostMapping("/{userName}/journal")
+    public ResponseEntity<PatientDTO> postJournalEntry(@PathVariable String userName, @RequestBody JournalEntryDTO newJournalEntryDTO) {
+        return new ResponseEntity<>(patientService.postJournalEntry(userName, newJournalEntryDTO), HttpStatus.CREATED);
+    }
+
 }

@@ -3,6 +3,7 @@ package com.uade.psyline.presentation.dto;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,4 +17,5 @@ public class PatientDTO {
     private String lastName;
     private LocalDate birthDate;
     private String email;
+    private Set<JournalEntryDTO> journal;
 }

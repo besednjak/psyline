@@ -2,8 +2,11 @@ package com.uade.psyline.application.usecase;
 
 import com.uade.psyline.application.exception.PatientNotFoundException;
 import com.uade.psyline.application.service.PatientService;
+import com.uade.psyline.infra.repository.mysql.dao.JournalEntryDAO;
 import com.uade.psyline.infra.repository.mysql.dao.PatientDAO;
 import com.uade.psyline.infra.repository.mysql.dao.TherapistDAO;
+import com.uade.psyline.infra.repository.mysql.jpa.JournalEntryRepository;
+import com.uade.psyline.presentation.dto.JournalEntryDTO;
 import com.uade.psyline.presentation.dto.PatientDTO;
 import com.uade.psyline.infra.repository.mysql.jpa.PatientRepository;
 import com.uade.psyline.presentation.dto.TherapistDTO;
@@ -19,6 +22,8 @@ public class PatientUsecase implements PatientService {
 
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private JournalEntryRepository journalEntryRepository;
     private final ModelMapper mapper = new ModelMapper();
 
     @Override
@@ -53,6 +58,18 @@ public class PatientUsecase implements PatientService {
         PatientDAO patientFoundDAO = this.findPatientByUserName(userName);
         patientRepository.delete(patientFoundDAO);
         return mapper.map(patientFoundDAO, PatientDTO.class);
+    }
+
+    @Override
+    @Transactional
+    public PatientDTO postJournalEntry(String userName, JournalEntryDTO newJournalEntryDTO) {
+        PatientDAO patientFoundDAO = this.findPatientByUserName(userName);
+        JournalEntryDAO newJournalEntryDAO = mapper.map(newJournalEntryDTO, JournalEntryDAO.class);
+        newJournalEntryDAO.setPatient(patientFoundDAO);
+        journalEntryRepository.save(newJournalEntryDAO);
+        PatientDTO patientDTO = mapper.map(patientFoundDAO, PatientDTO.class);
+
+        return patientDTO;
     }
 
     private PatientDAO findPatientByUserName(String userName) {
