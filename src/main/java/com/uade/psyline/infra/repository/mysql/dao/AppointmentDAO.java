@@ -3,12 +3,18 @@ package com.uade.psyline.infra.repository.mysql.dao;
 import com.uade.psyline.domain.appointment.Status;
 import com.uade.psyline.domain.appointment.Type;
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "appointments")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class AppointmentDAO {
 
     @Id
@@ -16,7 +22,7 @@ public class AppointmentDAO {
     private Integer id;
 
     @Column(nullable = false)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-ddTHH:mm:ssZ")//capaz la T no va hay que probar esto
+    @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")//capaz la T no va hay que probar esto
     private LocalDateTime dateTime;
 
     @Column(nullable = false)

@@ -1,9 +1,15 @@
 package com.uade.psyline.application.usecase;
 
 import com.uade.psyline.application.exception.AppointmentNotFoundException;
+import com.uade.psyline.application.exception.PatientNotFoundException;
+import com.uade.psyline.application.exception.TherapistNotFoundException;
 import com.uade.psyline.application.service.AppointmentService;
 import com.uade.psyline.infra.repository.mysql.dao.AppointmentDAO;
+import com.uade.psyline.infra.repository.mysql.dao.PatientDAO;
+import com.uade.psyline.infra.repository.mysql.dao.TherapistDAO;
 import com.uade.psyline.infra.repository.mysql.jpa.AppointmentRepository;
+import com.uade.psyline.infra.repository.mysql.jpa.PatientRepository;
+import com.uade.psyline.infra.repository.mysql.jpa.TherapistRepository;
 import com.uade.psyline.presentation.dto.AppointmentDTO;
 import jakarta.transaction.Transactional;
 import org.modelmapper.Conditions;
@@ -17,11 +23,19 @@ public class AppointmentUsecase implements AppointmentService {
     private final ModelMapper mapper = new ModelMapper();
     @Autowired
     private AppointmentRepository appointmentRepository;
+    @Autowired
+    private PatientRepository patientRepository;
+    @Autowired
+    private TherapistRepository therapistRepository;
 
     @Override
     @Transactional
     public AppointmentDTO postAppointment(AppointmentDTO newAppointmentDTO){
+        PatientDAO patientDAO = findPatientByUserName(newAppointmentDTO.getPatientUserName());
+        TherapistDAO therapistDAO = findTherapistByUserName(newAppointmentDTO.getTherapistUserName());
         AppointmentDAO newAppointmentDAO = mapper.map(newAppointmentDTO, AppointmentDAO.class);
+        newAppointmentDAO.setPatient(patientDAO);
+        newAppointmentDAO.setTherapist(therapistDAO);
         appointmentRepository.save(newAppointmentDAO);
         return mapper.map(newAppointmentDAO, AppointmentDTO.class);
     }
@@ -58,5 +72,21 @@ public class AppointmentUsecase implements AppointmentService {
             throw new AppointmentNotFoundException();
         }
         return appointmentFoundDAO;
+    }
+
+    private PatientDAO findPatientByUserName(String userName) {
+        PatientDAO patientFoundDAO = patientRepository.findPatientByUserName(userName);
+        if(patientFoundDAO == null) {
+            throw new PatientNotFoundException();
+        }
+        return patientFoundDAO;
+    }
+
+    private TherapistDAO findTherapistByUserName(String userName) {
+        TherapistDAO therapistFoundDAO = therapistRepository.findTherapistByUserName(userName);
+        if(therapistFoundDAO == null) {
+            throw new TherapistNotFoundException();
+        }
+        return therapistFoundDAO;
     }
 }

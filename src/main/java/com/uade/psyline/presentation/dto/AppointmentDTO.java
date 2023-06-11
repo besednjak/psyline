@@ -5,6 +5,7 @@ import com.uade.psyline.domain.appointment.Type;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,11 +15,11 @@ import java.time.LocalDate;
 public class AppointmentDTO {
 
     private Integer id;
-    private LocalDate date;
+    private LocalDateTime dateTime;
     private Double price;
     private boolean paid;
     private Status status;
     private Type type;
-    private TherapistDTO therapist;
-    private PatientDTO patient;
+    private String therapistUserName;
+    private String patientUserName;
 }
