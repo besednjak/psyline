@@ -5,6 +5,7 @@ import com.uade.psyline.domain.address.CABANeighborhood;
 import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.presentation.dto.TherapistDTO;
+import com.uade.psyline.presentation.dto.AppointmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +53,5 @@ public class TherapistController {
                 HttpStatus.OK
         );
     }
-
+    
 }

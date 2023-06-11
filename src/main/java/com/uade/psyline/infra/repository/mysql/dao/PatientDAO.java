@@ -34,7 +34,7 @@ public class PatientDAO {
     private String email;
 
     @OneToMany(mappedBy = "patient")
-    private Set<FollowUpDAO> appointments;
+    private Set<AppointmentDAO> appointments;
 
     @OneToMany(mappedBy = "patient")
     private Set<FollowUpDAO> followUps;

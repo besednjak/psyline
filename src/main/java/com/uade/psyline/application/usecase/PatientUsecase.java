@@ -37,6 +37,7 @@ public class PatientUsecase implements PatientService {
     @Override
     public PatientDTO getPatient(String userName) {
         PatientDAO patientFoundDAO = this.findPatientByUserName(userName);
+        mapper.createTypeMap(JournalEntryDAO.class, JournalEntryDTO.class);
         return mapper.map(patientFoundDAO, PatientDTO.class);
     }
 

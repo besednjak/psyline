@@ -61,7 +61,7 @@ public class TherapistDAO {
     private Double appointmentPrice;
 
     @OneToMany(mappedBy = "therapist")
-    private Set<FollowUpDAO> appointments;
+    private Set<AppointmentDAO> appointments;
 
     @OneToMany(mappedBy = "therapist")
     private Set<FollowUpDAO> followUps;
