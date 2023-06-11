@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Setter
 @EqualsAndHashCode
 public class TherapistDTO {
+
     private String userName;
     private String name;
     private String lastName;
@@ -23,4 +24,6 @@ public class TherapistDTO {
     private String phoneNumber;
     private String email;
     private String bio;
+    private Double appointmentPrice;
+
 }

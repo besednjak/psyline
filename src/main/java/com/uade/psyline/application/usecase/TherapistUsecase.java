@@ -2,6 +2,9 @@ package com.uade.psyline.application.usecase;
 
 import com.uade.psyline.application.exception.TherapistNotFoundException;
 import com.uade.psyline.application.service.TherapistService;
+import com.uade.psyline.domain.address.CABANeighborhood;
+import com.uade.psyline.domain.therapist.AppointmentModality;
+import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.infra.repository.mysql.dao.TherapistDAO;
 import com.uade.psyline.infra.repository.mysql.jpa.TherapistRepository;
 import com.uade.psyline.presentation.dto.TherapistDTO;
@@ -11,6 +14,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TherapistUsecase implements TherapistService {
@@ -51,6 +56,12 @@ public class TherapistUsecase implements TherapistService {
         TherapistDAO therapistFoundDAO = this.findTherapistByUserName(userName);
         therapistRepository.delete(therapistFoundDAO);
         return mapper.map(therapistFoundDAO, TherapistDTO.class);
+    }
+
+    @Override
+    public List<TherapistDTO> getTherapists(AppointmentModality modality, Specialty specialty, CABANeighborhood practiceArea, Double minPrice, Double maxPrice) {
+        List<TherapistDAO> therapistDAOS = therapistRepository.findAllByFilters(modality, specialty, practiceArea, minPrice, maxPrice);
+        return therapistDAOS.stream().map(therapistDAO -> mapper.map(therapistDAO, TherapistDTO.class)).toList();
     }
 
     private TherapistDAO findTherapistByUserName(String userName) {
