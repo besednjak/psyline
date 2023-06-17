@@ -110,12 +110,13 @@ class PatientUsecaseTest {
 
     // ------------------------------( UTIL )------------------------------//.
     private PatientDTO getExpectedPatientDTO() {
-        return new PatientDTO(
-                "pJuanetes",
-                "Pepito",
-                "Juanetes",
-                LocalDate.of(1999, 12, 3),
-                "pjuanetes@uade.edu.ar");
+        return PatientDTO.builder()
+                .userName("pJuanetes")
+                .name("Pepito")
+                .lastName("Juanetes")
+                .birthDate(LocalDate.of(1999, 12, 3))
+                .email("pjuanetes@uade.edu.ar")
+                .build();
     }
 
     private PatientDAO getPatientDAO() {

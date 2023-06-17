@@ -10,6 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode
+@Builder
 public class PatientDTO {
 
     private String userName;
