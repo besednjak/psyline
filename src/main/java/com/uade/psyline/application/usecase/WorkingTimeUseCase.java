@@ -7,6 +7,7 @@ import com.uade.psyline.infra.repository.mysql.dao.TherapistDAO;
 import com.uade.psyline.infra.repository.mysql.dao.WorkingTimeDAO;
 import com.uade.psyline.infra.repository.mysql.jpa.TherapistRepository;
 import com.uade.psyline.infra.repository.mysql.jpa.WorkingTimeRepository;
+import com.uade.psyline.presentation.dto.TherapistDTO;
 import com.uade.psyline.presentation.dto.WorkingTimeDTO;
 import jakarta.transaction.Transactional;
 import org.modelmapper.Conditions;
@@ -27,13 +28,13 @@ public class WorkingTimeUseCase implements WorkingTimeService {
 
     @Override
     @Transactional
-    public WorkingTimeDTO postWorkingTime(WorkingTimeDTO newWorkingTimeDTO){
+    public TherapistDTO postWorkingTime(WorkingTimeDTO newWorkingTimeDTO){
         TherapistDAO therapistDAO = findTherapistByUserName(newWorkingTimeDTO.getTherapistUserName());
         WorkingTimeDAO newWorkingTimeDAO = mapper.map(newWorkingTimeDTO, WorkingTimeDAO.class);
         newWorkingTimeDAO.setTherapist(therapistDAO);
         workingTimeRepository.save(newWorkingTimeDAO);
 
-        return mapper.map(newWorkingTimeDAO, WorkingTimeDTO.class);
+        return mapper.map(therapistDAO, TherapistDTO.class);
     }
 
     @Override

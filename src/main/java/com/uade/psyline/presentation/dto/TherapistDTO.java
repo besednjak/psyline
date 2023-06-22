@@ -5,6 +5,7 @@ import com.uade.psyline.domain.therapist.Specialty;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,5 +26,6 @@ public class TherapistDTO {
     private String email;
     private String bio;
     private Double appointmentPrice;
+    private Set<WorkingTimeDTO> workingSchedule;
 
 }

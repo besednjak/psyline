@@ -6,7 +6,9 @@ import com.uade.psyline.domain.address.CABANeighborhood;
 import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.infra.repository.mysql.dao.TherapistDAO;
+import com.uade.psyline.infra.repository.mysql.dao.WorkingTimeDAO;
 import com.uade.psyline.infra.repository.mysql.jpa.TherapistRepository;
+import com.uade.psyline.infra.repository.mysql.jpa.WorkingTimeRepository;
 import com.uade.psyline.presentation.dto.TherapistDTO;
 import jakarta.transaction.Transactional;
 import org.modelmapper.Conditions;
@@ -22,6 +24,9 @@ public class TherapistUsecase implements TherapistService {
 
     @Autowired
     private TherapistRepository therapistRepository;
+
+    @Autowired
+    private WorkingTimeRepository workingTimeRepository;
     private final ModelMapper mapper = new ModelMapper();
 
     @Override
@@ -46,9 +51,17 @@ public class TherapistUsecase implements TherapistService {
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
         mapper.map(updatedTherapistDAO, existingTherapistDAO);
+        this.updateTherapistSchedule(existingTherapistDAO);
         therapistRepository.save(existingTherapistDAO);
 
         return mapper.map(existingTherapistDAO, TherapistDTO.class);
+    }
+
+    private void updateTherapistSchedule(TherapistDAO existingTherapistDAO) {
+        existingTherapistDAO.getWorkingSchedule().forEach(workingTimeDAO -> {
+            workingTimeDAO.setTherapist(existingTherapistDAO);
+            workingTimeRepository.save(workingTimeDAO);
+        });
     }
 
     @Override

@@ -18,7 +18,6 @@ import java.time.LocalTime;
 public class WorkingTimeDTO {
 
     private Integer id;
-    private TherapistDAO therapist;
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;

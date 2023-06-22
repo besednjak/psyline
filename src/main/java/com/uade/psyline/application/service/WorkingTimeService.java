@@ -1,12 +1,13 @@
 package com.uade.psyline.application.service;
 
+import com.uade.psyline.presentation.dto.TherapistDTO;
 import com.uade.psyline.presentation.dto.WorkingTimeDTO;
 
 import java.util.List;
 
 public interface WorkingTimeService {
 
-    WorkingTimeDTO postWorkingTime(WorkingTimeDTO newWorkingTime);
+    TherapistDTO postWorkingTime(WorkingTimeDTO newWorkingTime);
 
     WorkingTimeDTO getWorkingTime(Integer workingTimeId);
 

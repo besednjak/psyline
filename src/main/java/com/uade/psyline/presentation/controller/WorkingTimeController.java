@@ -1,6 +1,7 @@
 package com.uade.psyline.presentation.controller;
 
 import com.uade.psyline.application.service.WorkingTimeService;
+import com.uade.psyline.presentation.dto.TherapistDTO;
 import com.uade.psyline.presentation.dto.WorkingTimeDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class WorkingTimeController {
     WorkingTimeService workingTimeService;
 
     @PostMapping
-    public ResponseEntity<WorkingTimeDTO> postWorkingTime(@RequestBody WorkingTimeDTO newWorkingTimeDTO) {
+    public ResponseEntity<TherapistDTO> postWorkingTime(@RequestBody WorkingTimeDTO newWorkingTimeDTO) {
         return new ResponseEntity<>(workingTimeService.postWorkingTime(newWorkingTimeDTO), HttpStatus.CREATED);
     }
 
