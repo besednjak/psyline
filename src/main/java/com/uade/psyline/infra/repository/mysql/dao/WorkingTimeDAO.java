@@ -31,4 +31,5 @@ public class WorkingTimeDAO {
 
     @Column(nullable = false)
     private LocalTime endTime;
+
 }
