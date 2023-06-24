@@ -33,3 +33,25 @@ VALUES
     ('lgarcia', 'IN_PERSON',6000,'', '1993-08-09', 'lgarcia@uade.edu.ar', 'García', '0880123456', 'Lucía', '01189012345', 'AGRONOMIA', 'FAMILY_THERAPY'),
     ('romigonzalez', 'HYBRID',4500,'', '1989-02-26', 'rgonzalez@uade.edu.ar', 'González', '0991234567', 'Romina', '01190123456', 'BELGRANO', 'PSYCHOANALYSIS'),
     ('mgomez', 'IN_PERSON',5250,'', '1990-05-17', 'mgomez@uade.edu.ar', 'Gómez', '0102345678', 'Marcelo', '01101234567', 'BELGRANO', 'COGNITIVE_BEHAVIORAL_THERAPY');
+
+INSERT INTO quotes VALUES
+    (1,'Aunque nadie puede volver atrás y hacer un nuevo comienzo, cualquiera puede comenzar a partir de ahora y crear un nuevo final. Carl Bard'),
+    (2,'La felicidad no puede ser ganada, no es una propiedad. Es la experiencia espiritual de vida de cada minuto con amor, gracia y gratitud. Denis Waitley'),
+    (3,'No conozco el secreto del éxito, pero el secreto del fracaso es procurar seguir siempre la voluntad de los otros.'),
+    (4,'Acepta la responsabilidad de tu vida. Date cuenta que tú eres quien va a llegar a donde quiere ir, nadie más. Les Brown'),
+    (5,'Todos caemos al suelo en algún momento. Es la forma en que te levantas, ese es el verdadero desafío. ¿No es así? Madonna'),
+    (6,'No hay nada imposible, porque los sueños de ayer son las esperanzas de hoy y pueden convertirse en realidad mañana.'),
+    (7,'Si no sabes, te enseño. Si no puedes, te ayudo. Pero si no quieres, lo siento, pero nada puedo hacer por ti.'),
+    (8,'Si tú no construyes tu sueño, alguien va a contratarte para que le ayudes a construir el suyo. Dhirubhai Ambani'),
+    (9,'Lo único que se interpone entre ti y tu sueño, es la voluntad de intentarlo y la creencia de que en realidad es posible. Joel Brown'),
+    (10,'Los desafíos son los que hacen la vida interesante, y superarlos es lo que hace la vida significativa. Joshua J. Marino'),
+    (11,'La única manera de hacer un gran trabajo, es amar lo que haces. Si no lo has encontrado, sigue buscando. No te conformes. Steve Jobs'),
+    (12,'La vida es como fotografía. Necesita los negativos para desarrollarse.'),
+    (13,'Estoy agradecido por todos los que me dijeron NO. Es gracias a ellos estoy siendo yo mismo. Albert Einstein'),
+    (14,'No juzgues cada día por la cosecha que has obtenido, sino por las semillas que has plantado. Robert Louis Stevenson'),
+    (15,'Dondequiera que vayas, sin importar el clima, siempre lleva su propio sol. La actitud lo es todo… D’Angelo'),
+    (16,'Si la oportunidad no llama, construye una puerta. Milton Berle'),
+    (17,'Todos nuestros sueños pueden hacerse realidad si sólo tenemos el coraje de perseguirlos. Walt Disney'),
+    (18,'Amarse a uno mismo es el comienzo de un romance de toda la vida. Oscar Wilde');
+
+
