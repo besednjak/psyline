@@ -10,6 +10,7 @@ import com.uade.psyline.infra.repository.mysql.dao.WorkingTimeDAO;
 import com.uade.psyline.infra.repository.mysql.jpa.TherapistRepository;
 import com.uade.psyline.infra.repository.mysql.jpa.WorkingTimeRepository;
 import com.uade.psyline.presentation.dto.TherapistDTO;
+import com.uade.psyline.presentation.dto.WorkingTimeDTO;
 import jakarta.transaction.Transactional;
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
@@ -17,14 +18,15 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class TherapistUsecase implements TherapistService {
 
     @Autowired
     private TherapistRepository therapistRepository;
-
     @Autowired
     private WorkingTimeRepository workingTimeRepository;
     private final ModelMapper mapper = new ModelMapper();
@@ -38,6 +40,7 @@ public class TherapistUsecase implements TherapistService {
     }
 
     @Override
+    @Transactional
     public TherapistDTO getTherapist(String userName) {
         TherapistDAO therapistFoundDAO = this.findTherapistByUserName(userName);
         return mapper.map(therapistFoundDAO, TherapistDTO.class);
@@ -51,17 +54,27 @@ public class TherapistUsecase implements TherapistService {
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
         mapper.map(updatedTherapistDAO, existingTherapistDAO);
-        this.updateTherapistSchedule(existingTherapistDAO);
         therapistRepository.save(existingTherapistDAO);
 
         return mapper.map(existingTherapistDAO, TherapistDTO.class);
     }
 
-    private void updateTherapistSchedule(TherapistDAO existingTherapistDAO) {
-        existingTherapistDAO.getWorkingSchedule().forEach(workingTimeDAO -> {
-            workingTimeDAO.setTherapist(existingTherapistDAO);
-            workingTimeRepository.save(workingTimeDAO);
+    @Override
+    @Transactional
+    public TherapistDTO updateTherapistSchedule(String userName, Set<WorkingTimeDTO> newScheduleDTO) {
+        TherapistDAO existingTherapistDAO = this.findTherapistByUserName(userName);
+        workingTimeRepository.deleteAll(existingTherapistDAO.getWorkingSchedule());
+
+        Set<WorkingTimeDAO> newScheduleDAO = new HashSet<>();
+        newScheduleDTO.forEach(newWorkingTimeDTO -> {
+            WorkingTimeDAO newWorkingTimeDAO = mapper.map(newWorkingTimeDTO, WorkingTimeDAO.class);
+            newWorkingTimeDAO.setTherapist(existingTherapistDAO);
+            workingTimeRepository.save(newWorkingTimeDAO);
+            newScheduleDAO.add(newWorkingTimeDAO);
         });
+
+        existingTherapistDAO.setWorkingSchedule(newScheduleDAO);
+        return mapper.map(existingTherapistDAO, TherapistDTO.class);
     }
 
     @Override

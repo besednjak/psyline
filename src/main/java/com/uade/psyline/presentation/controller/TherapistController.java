@@ -6,12 +6,14 @@ import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.presentation.dto.TherapistDTO;
 import com.uade.psyline.presentation.dto.AppointmentDTO;
+import com.uade.psyline.presentation.dto.WorkingTimeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/therapists")
@@ -33,6 +35,11 @@ public class TherapistController {
     @PatchMapping
     public ResponseEntity<TherapistDTO> updateTherapist(@RequestBody TherapistDTO newTherapistDTO) {
         return new ResponseEntity<>(therapistService.updateTherapist(newTherapistDTO), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{userName}/schedule")
+    public ResponseEntity<TherapistDTO> updateTherapistSchedule(@PathVariable String userName, @RequestBody Set<WorkingTimeDTO> newSchedule) {
+        return new ResponseEntity<>(therapistService.updateTherapistSchedule(userName, newSchedule), HttpStatus.OK);
     }
 
     @DeleteMapping("/{userName}")
