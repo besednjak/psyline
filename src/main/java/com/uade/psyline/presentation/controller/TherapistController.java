@@ -6,6 +6,7 @@ import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.domain.therapist.TherapyTreatment;
 import com.uade.psyline.presentation.dto.TherapistDTO;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ public class TherapistController {
     }
 
     @GetMapping("/{userName}")
+    @Transactional
     public ResponseEntity<TherapistDTO> getTherapist(@PathVariable String userName) {
         return new ResponseEntity<>(therapistService.getTherapist(userName), HttpStatus.OK);
     }
@@ -42,13 +44,14 @@ public class TherapistController {
     }
 
     @GetMapping
+    @Transactional
     public ResponseEntity<List<TherapistDTO>> getTherapists(
             @RequestParam(required = false) AppointmentModality modality,
             @RequestParam(required = false) Specialty specialty,
             @RequestParam(required = false, name = "practice_area") CABANeighborhood practiceArea,
             @RequestParam(required = false, name = "min_price") Double minPrice,
             @RequestParam(required = false, name = "max_price") Double maxPrice,
-            @RequestParam(required = false, name="therapy_treatment") Set<TherapyTreatment> therapyTreatments
+            @RequestParam(required = false, name="therapy_treatments") Set<TherapyTreatment> therapyTreatments
             ) {
         return new ResponseEntity<>(
                 therapistService.getTherapists(modality, specialty, practiceArea, minPrice, maxPrice, therapyTreatments),
