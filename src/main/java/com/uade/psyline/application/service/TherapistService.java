@@ -4,8 +4,10 @@ import com.uade.psyline.domain.address.CABANeighborhood;
 import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.presentation.dto.TherapistDTO;
+import com.uade.psyline.presentation.dto.WorkingTimeDTO;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TherapistService {
     TherapistDTO postTherapist(TherapistDTO newPatient);
@@ -17,4 +19,7 @@ public interface TherapistService {
     TherapistDTO deleteTherapist(String userName);
 
     List<TherapistDTO> getTherapists(AppointmentModality modality, Specialty specialty, CABANeighborhood neighborhood, Double minPrice, Double maxPrice);
+
+    TherapistDTO updateTherapistSchedule(String userName, Set<WorkingTimeDTO> newSchedule);
+
 }

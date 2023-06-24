@@ -4,18 +4,16 @@ import com.uade.psyline.application.exception.PatientNotFoundException;
 import com.uade.psyline.application.service.PatientService;
 import com.uade.psyline.infra.repository.mysql.dao.JournalEntryDAO;
 import com.uade.psyline.infra.repository.mysql.dao.PatientDAO;
-import com.uade.psyline.infra.repository.mysql.dao.TherapistDAO;
 import com.uade.psyline.infra.repository.mysql.jpa.JournalEntryRepository;
+import com.uade.psyline.infra.repository.mysql.jpa.PatientRepository;
 import com.uade.psyline.presentation.dto.JournalEntryDTO;
 import com.uade.psyline.presentation.dto.PatientDTO;
-import com.uade.psyline.infra.repository.mysql.jpa.PatientRepository;
-import com.uade.psyline.presentation.dto.TherapistDTO;
 import jakarta.transaction.Transactional;
 import org.modelmapper.Conditions;
+import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.modelmapper.ModelMapper;
 
 @Service
 public class PatientUsecase implements PatientService {
