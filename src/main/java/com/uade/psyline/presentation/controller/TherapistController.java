@@ -48,7 +48,7 @@ public class TherapistController {
             @RequestParam(required = false, name = "practice_area") CABANeighborhood practiceArea,
             @RequestParam(required = false, name = "min_price") Double minPrice,
             @RequestParam(required = false, name = "max_price") Double maxPrice,
-            @RequestParam(required = false, name="therapy_treatment") Set<TherapyTreatment> therapyTreatments
+            @RequestParam(required = false, name = "therapy_treatment") Set<String> therapyTreatments
             ) {
         return new ResponseEntity<>(
                 therapistService.getTherapists(modality, specialty, practiceArea, minPrice, maxPrice, therapyTreatments),

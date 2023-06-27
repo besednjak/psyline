@@ -7,6 +7,7 @@ import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.domain.therapist.TherapyTreatment;
 import com.uade.psyline.infra.repository.mysql.dao.TherapistDAO;
+import com.uade.psyline.infra.repository.mysql.dao.TherapyTreatmentDAO;
 import com.uade.psyline.infra.repository.mysql.jpa.TherapistRepository;
 import com.uade.psyline.presentation.dto.TherapistDTO;
 import jakarta.transaction.Transactional;
@@ -61,7 +62,7 @@ public class TherapistUsecase implements TherapistService {
     }
 
     @Override
-    public List<TherapistDTO> getTherapists(AppointmentModality modality, Specialty specialty, CABANeighborhood practiceArea, Double minPrice, Double maxPrice, Set<TherapyTreatment> therapyTreatments) {
+    public List<TherapistDTO> getTherapists(AppointmentModality modality, Specialty specialty, CABANeighborhood practiceArea, Double minPrice, Double maxPrice, Set<String> therapyTreatments) {
         List<TherapistDAO> therapistDAOS = therapistRepository.findAllByFilters(modality, specialty, practiceArea, minPrice, maxPrice, therapyTreatments);
         return therapistDAOS.stream().map(therapistDAO -> mapper.map(therapistDAO, TherapistDTO.class)).toList();
     }

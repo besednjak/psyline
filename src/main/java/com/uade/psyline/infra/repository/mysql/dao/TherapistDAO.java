@@ -68,7 +68,6 @@ public class TherapistDAO {
     private Set<FollowUpDAO> followUps;
 
     @Column(nullable=true)
-    @ElementCollection(targetClass = TherapyTreatment.class)
-    @Enumerated(EnumType.STRING)
-    private Set<TherapyTreatment> therapyTreatments;
+    @OneToMany(mappedBy = "therapyTreatment")
+    private Set<TherapyTreatmentDAO> therapyTreatments;
 }

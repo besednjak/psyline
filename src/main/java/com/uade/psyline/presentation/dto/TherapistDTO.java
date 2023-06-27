@@ -27,5 +27,6 @@ public class TherapistDTO {
     private String email;
     private String bio;
     private Double appointmentPrice;
-    private Set<TherapyTreatment> therapyTreatments;
+    private Set<String> therapyTreatments;
+    private Set<AppointmentDTO> appointments;
 }

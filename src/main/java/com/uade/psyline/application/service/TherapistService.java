@@ -18,5 +18,5 @@ public interface TherapistService {
 
     TherapistDTO deleteTherapist(String userName);
 
-    List<TherapistDTO> getTherapists(AppointmentModality modality, Specialty specialty, CABANeighborhood neighborhood, Double minPrice, Double maxPrice, Set<TherapyTreatment> therapyTreatments);
+    List<TherapistDTO> getTherapists(AppointmentModality modality, Specialty specialty, CABANeighborhood neighborhood, Double minPrice, Double maxPrice, Set<String> therapyTreatments);
 }
