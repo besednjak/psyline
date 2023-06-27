@@ -60,6 +60,10 @@ public class TherapistDAO {
     @Column(nullable = false)
     private Double appointmentPrice;
 
+    @Column(nullable = true)
+    private String picture;
+
+
     @OneToMany(mappedBy = "therapist")
     private Set<AppointmentDAO> appointments;
 

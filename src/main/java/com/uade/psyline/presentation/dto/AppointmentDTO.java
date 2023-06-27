@@ -22,4 +22,5 @@ public class AppointmentDTO {
     private Type type;
     private String therapistUserName;
     private String patientUserName;
+    private String invoice;
 }
