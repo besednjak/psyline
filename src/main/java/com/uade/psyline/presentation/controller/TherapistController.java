@@ -6,6 +6,7 @@ import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.domain.therapist.TherapyTreatment;
 import com.uade.psyline.presentation.dto.TherapistDTO;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ public class TherapistController {
     }
 
     @GetMapping("/{userName}")
+    @Transactional
     public ResponseEntity<TherapistDTO> getTherapist(@PathVariable String userName) {
         return new ResponseEntity<>(therapistService.getTherapist(userName), HttpStatus.OK);
     }
@@ -42,6 +44,7 @@ public class TherapistController {
     }
 
     @GetMapping
+    @Transactional
     public ResponseEntity<List<TherapistDTO>> getTherapists(
             @RequestParam(required = false) AppointmentModality modality,
             @RequestParam(required = false) Specialty specialty,
