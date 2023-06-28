@@ -1,5 +1,7 @@
 package com.uade.psyline.domain.address;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum CABANeighborhood {
     AGRONOMIA,
     ALMAGRO,
@@ -48,4 +50,19 @@ public enum CABANeighborhood {
     VILLA_SANTA_RITA,
     VILLA_SOLDATI,
     VILLA_URQUIZA;
+
+    @Override
+    @JsonValue
+    public String toString() {
+        String[] words = name().split("_");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            result.append(word.charAt(0))
+                    .append(word.substring(1).toLowerCase())
+                    .append(" ");
+        }
+
+        return result.toString().trim();
+    }
 }

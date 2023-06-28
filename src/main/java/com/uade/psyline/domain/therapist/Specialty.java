@@ -1,8 +1,24 @@
 package com.uade.psyline.domain.therapist;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum Specialty {
-    PSYCHOANALYSIS,
-    COGNITIVE_BEHAVIORAL_THERAPY,
-    FAMILY_THERAPY,
-    GROUP_THERAPY
+    PSICOANALISIS,
+    TERAPIA_COGNITIVO_CONDUCTUAL,
+    TERAPIA_FAMILIAR,
+    TERAPIA_GRUPAL;
+    @Override
+    @JsonValue
+    public String toString() {
+        String[] words = name().split("_");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            result.append(word.charAt(0))
+                    .append(word.substring(1).toLowerCase())
+                    .append(" ");
+        }
+
+        return result.toString().trim();
+    }
 }

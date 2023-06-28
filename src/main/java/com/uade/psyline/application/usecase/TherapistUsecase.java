@@ -118,8 +118,8 @@ public class TherapistUsecase implements TherapistService {
         if(modality == null){
             return true;
         }
-        if(modality == AppointmentModality.IN_PERSON || modality == AppointmentModality.VIRTUAL){
-            return therapist.getAppointmentModality().equals(AppointmentModality.HYBRID) ||
+        if(modality == AppointmentModality.PRESENCIAL || modality == AppointmentModality.VIRTUAL){
+            return therapist.getAppointmentModality().equals(AppointmentModality.HIBRIDO) ||
                     therapist.getAppointmentModality().equals(modality);
         }
         else{
