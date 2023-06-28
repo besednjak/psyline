@@ -33,3 +33,8 @@ VALUES
     ('lgarcia', 'IN_PERSON',6000,'', '1993-08-09', 'lgarcia@uade.edu.ar', 'García', '0880123456', 'Lucía', '01189012345','C:\\Users\\samsung\\OneDrive - Fundación UADE\\Desktop\\UADE\\2023 1c\\3SEMI', 'AGRONOMIA', 'FAMILY_THERAPY'),
     ('romigonzalez', 'HYBRID',4500,'', '1989-02-26', 'rgonzalez@uade.edu.ar', 'González', '0991234567', 'Romina', '01190123456','C:\\Users\\samsung\\OneDrive - Fundación UADE\\Desktop\\UADE\\2023 1c\\3SEMI', 'BELGRANO', 'PSYCHOANALYSIS'),
     ('mgomez', 'IN_PERSON',5250,'', '1990-05-17', 'mgomez@uade.edu.ar', 'Gómez', '0102345678', 'Marcelo', '01101234567','C:\\Users\\samsung\\OneDrive - Fundación UADE\\Desktop\\UADE\\2023 1c\\3SEMI', 'BELGRANO', 'COGNITIVE_BEHAVIORAL_THERAPY');
+
+INSERT INTO THERAPY_TREATMENTS
+VALUES
+    (1, 'ANXIETY','jperez'),
+    (2, 'STRESS','jperez');

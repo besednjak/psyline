@@ -3,6 +3,7 @@ package com.uade.psyline.infra.repository.mysql.dao;
 import com.uade.psyline.domain.address.CABANeighborhood;
 import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
+import com.uade.psyline.domain.therapist.TherapyTreatment;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -63,12 +64,15 @@ public class TherapistDAO {
     @Column(nullable = true)
     private String picture;
 
-
     @OneToMany(mappedBy = "therapist")
     private Set<AppointmentDAO> appointments;
 
     @OneToMany(mappedBy = "therapist")
     private Set<FollowUpDAO> followUps;
+
+    @Column(nullable=true)
+    @OneToMany(mappedBy = "therapist")
+    private Set<TherapyTreatmentDAO> therapyTreatments;
 
     @OneToMany(mappedBy = "therapist")
     private Set<WorkingTimeDAO> workingSchedule;
