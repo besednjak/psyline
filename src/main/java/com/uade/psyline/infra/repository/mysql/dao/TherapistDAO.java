@@ -58,8 +58,11 @@ public class TherapistDAO {
     @Column(nullable = true)
     private String bio;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Double appointmentPrice;
+
+    @Column(nullable = true)
+    private String picture;
 
     @OneToMany(mappedBy = "therapist")
     private Set<AppointmentDAO> appointments;
@@ -70,4 +73,8 @@ public class TherapistDAO {
     @Column(nullable=true)
     @OneToMany(mappedBy = "therapyTreatment")
     private Set<TherapyTreatmentDAO> therapyTreatments;
+
+    @OneToMany(mappedBy = "therapist")
+    private Set<WorkingTimeDAO> workingSchedule;
+
 }

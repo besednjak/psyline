@@ -7,6 +7,8 @@ import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.domain.therapist.TherapyTreatment;
 import com.uade.psyline.infra.repository.mysql.dao.TherapyTreatmentDAO;
 import com.uade.psyline.presentation.dto.TherapistDTO;
+import com.uade.psyline.presentation.dto.AppointmentDTO;
+import com.uade.psyline.presentation.dto.WorkingTimeDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +39,11 @@ public class TherapistController {
     @PatchMapping
     public ResponseEntity<TherapistDTO> updateTherapist(@RequestBody TherapistDTO newTherapistDTO) {
         return new ResponseEntity<>(therapistService.updateTherapist(newTherapistDTO), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{userName}/schedule")
+    public ResponseEntity<TherapistDTO> updateTherapistSchedule(@PathVariable String userName, @RequestBody Set<WorkingTimeDTO> newSchedule) {
+        return new ResponseEntity<>(therapistService.updateTherapistSchedule(userName, newSchedule), HttpStatus.OK);
     }
 
     @DeleteMapping("/{userName}")
