@@ -2,7 +2,6 @@ package com.uade.psyline.presentation.dto;
 
 import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
-import com.uade.psyline.domain.therapist.TherapyTreatment;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -28,7 +27,7 @@ public class TherapistDTO {
     private String bio;
     private String picture;
     private Double appointmentPrice;
-    private Set<TherapyTreatment> therapyTreatments;
+    private Set<TherapyTreatmentDTO> therapyTreatments;
     private Set<AppointmentDTO> appointments;
     private Set<WorkingTimeDTO> workingSchedule;
 

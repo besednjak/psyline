@@ -71,7 +71,7 @@ public class TherapistDAO {
     private Set<FollowUpDAO> followUps;
 
     @Column(nullable=true)
-    @OneToMany(mappedBy = "therapyTreatment")
+    @OneToMany(mappedBy = "therapist")
     private Set<TherapyTreatmentDAO> therapyTreatments;
 
     @OneToMany(mappedBy = "therapist")

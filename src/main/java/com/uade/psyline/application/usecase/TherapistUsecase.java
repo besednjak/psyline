@@ -20,6 +20,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -89,11 +90,41 @@ public class TherapistUsecase implements TherapistService {
     @Override
     @Transactional
     public List<TherapistDTO> getTherapists(AppointmentModality modality, Specialty specialty, CABANeighborhood practiceArea, Double minPrice, Double maxPrice, Set<TherapyTreatment> therapyTreatments) {
-        List<TherapistDAO> therapistDAOS = therapistRepository.findAllByFilters(modality, specialty, practiceArea, minPrice, maxPrice, therapyTreatments);
-        if(modality == AppointmentModality.IN_PERSON || modality == AppointmentModality.VIRTUAL){
-            therapistDAOS.addAll(therapistRepository.findAllByFilters(AppointmentModality.HYBRID, specialty, practiceArea, minPrice, maxPrice, therapyTreatments));
+        List<TherapistDAO> therapistDAOS = therapistRepository.findAllByFilters(specialty, practiceArea, minPrice, maxPrice);
+        List<TherapistDAO> filteredTherapists = new ArrayList<>();
+        for(TherapistDAO therapist : therapistDAOS){
+            if(isFilteredByModality(therapist, modality)){
+                if(isFilteredByTherapyTreatments(therapist, therapyTreatments)){
+                    filteredTherapists.add(therapist);
+                }
+            }
         }
-        return therapistDAOS.stream().map(therapistDAO -> mapper.map(therapistDAO, TherapistDTO.class)).toList();
+        return filteredTherapists.stream().map(therapistDAO -> mapper.map(therapistDAO, TherapistDTO.class)).toList();
+    }
+
+    private boolean isFilteredByTherapyTreatments(TherapistDAO therapist, Set<TherapyTreatment> therapyTreatments){
+        if(therapyTreatments == null || therapyTreatments.isEmpty()){
+            return true;
+        }
+        else {
+            Set<TherapyTreatment> therapistTherapyTreatments = new HashSet<>(
+                    therapist.getTherapyTreatments().stream().map(TherapyTreatmentDAO::getTherapyTreatment).toList()
+            );
+            return therapistTherapyTreatments.containsAll(therapyTreatments);
+        }
+    }
+
+    private boolean isFilteredByModality(TherapistDAO therapist, AppointmentModality modality){
+        if(modality == null){
+            return true;
+        }
+        if(modality == AppointmentModality.IN_PERSON || modality == AppointmentModality.VIRTUAL){
+            return therapist.getAppointmentModality().equals(AppointmentModality.HYBRID) ||
+                    therapist.getAppointmentModality().equals(modality);
+        }
+        else{
+            return therapist.getAppointmentModality().equals(modality);
+        }
     }
 
     private TherapistDAO findTherapistByUserName(String userName) {
