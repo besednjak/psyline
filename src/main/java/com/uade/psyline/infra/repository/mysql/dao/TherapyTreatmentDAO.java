@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="therapy_treatment")
+@Table(name="therapy_treatments")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,4 +20,7 @@ public class TherapyTreatmentDAO {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private TherapyTreatment therapyTreatment;
+
+    @ManyToOne
+    private TherapistDAO therapist;
 }

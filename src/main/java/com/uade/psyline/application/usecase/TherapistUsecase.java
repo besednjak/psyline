@@ -63,7 +63,7 @@ public class TherapistUsecase implements TherapistService {
     }
 
     @Override
-    public List<TherapistDTO> getTherapists(AppointmentModality modality, Specialty specialty, CABANeighborhood practiceArea, Double minPrice, Double maxPrice, Set<String> therapyTreatments) {
+    public List<TherapistDTO> getTherapists(AppointmentModality modality, Specialty specialty, CABANeighborhood practiceArea, Double minPrice, Double maxPrice, Set<TherapyTreatment> therapyTreatments) {
         List<TherapistDAO> therapistDAOS = therapistRepository.findAllByFilters(modality, specialty, practiceArea, minPrice, maxPrice, therapyTreatments);
         return therapistDAOS.stream().map(therapistDAO -> mapper.map(therapistDAO, TherapistDTO.class)).toList();
     }

@@ -34,7 +34,7 @@ VALUES
     ('romigonzalez', 'HYBRID',007,'', '1989-02-26', 'rgonzalez@uade.edu.ar', 'González', '0991234567', 'Romina', '01190123456', 'BELGRANO', 'PSYCHOANALYSIS'),
     ('mgomez', 'IN_PERSON',7373,'', '1990-05-17', 'mgomez@uade.edu.ar', 'Gómez', '0102345678', 'Marcelo', '01101234567', 'BELGRANO', 'COGNITIVE_BEHAVIORAL_THERAPY');
 
-INSERT INTO THERAPISTDAO_THERAPY_TREATMENTS
+INSERT INTO THERAPY_TREATMENTS
 VALUES
-    ('jperez', 'ANXIETY'),
-    ('jperez', 'STRESS');
+    (1, 'ANXIETY','jperez'),
+    (2, 'STRESS','jperez');

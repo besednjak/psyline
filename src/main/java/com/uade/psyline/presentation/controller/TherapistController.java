@@ -5,6 +5,7 @@ import com.uade.psyline.domain.address.CABANeighborhood;
 import com.uade.psyline.domain.therapist.AppointmentModality;
 import com.uade.psyline.domain.therapist.Specialty;
 import com.uade.psyline.domain.therapist.TherapyTreatment;
+import com.uade.psyline.infra.repository.mysql.dao.TherapyTreatmentDAO;
 import com.uade.psyline.presentation.dto.TherapistDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class TherapistController {
             @RequestParam(required = false, name = "practice_area") CABANeighborhood practiceArea,
             @RequestParam(required = false, name = "min_price") Double minPrice,
             @RequestParam(required = false, name = "max_price") Double maxPrice,
-            @RequestParam(required = false, name = "therapy_treatment") Set<String> therapyTreatments
+            @RequestParam(required = false, name = "therapy_treatment") Set<TherapyTreatment> therapyTreatments
             ) {
         return new ResponseEntity<>(
                 therapistService.getTherapists(modality, specialty, practiceArea, minPrice, maxPrice, therapyTreatments),
