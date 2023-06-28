@@ -39,6 +39,9 @@ public class AppointmentDAO {
     @Enumerated(EnumType.STRING)
     private Type type;
 
+    @Column(nullable = true)
+    private String invoice;
+
     @ManyToOne
     private TherapistDAO therapist;
 
