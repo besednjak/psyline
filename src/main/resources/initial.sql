@@ -156,4 +156,3 @@ INSERT INTO quotes VALUES
                        (16,'Si la oportunidad no llama, construye una puerta. Milton Berle'),
                        (17,'Todos nuestros sueños pueden hacerse realidad si sólo tenemos el coraje de perseguirlos. Walt Disney'),
                        (18,'Amarse a uno mismo es el comienzo de un romance de toda la vida. Oscar Wilde');
-
