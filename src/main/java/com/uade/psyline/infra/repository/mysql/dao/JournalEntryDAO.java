@@ -28,7 +28,7 @@ public class JournalEntryDAO {
     @Enumerated(EnumType.STRING)
     private Emotion emotion;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String description;
 
     @ManyToOne
