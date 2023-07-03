@@ -40,4 +40,14 @@ public class PatientController {
         return new ResponseEntity<>(patientService.postJournalEntry(userName, newJournalEntryDTO), HttpStatus.CREATED);
     }
 
+    @PatchMapping("/{userName}/journal")
+    public ResponseEntity<PatientDTO> updateJournalEntry(@PathVariable String userName, @RequestBody JournalEntryDTO updatedJournalEntryDTO) {
+        return new ResponseEntity<>(patientService.updateJournalEntry(userName, updatedJournalEntryDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{userName}/journal/{journalEntryId}")
+    public ResponseEntity<PatientDTO> deleteJournalEntry(@PathVariable String userName, @PathVariable Integer journalEntryId) {
+        return new ResponseEntity<>(patientService.deleteJournalEntry(userName, journalEntryId), HttpStatus.OK);
+    }
+
 }

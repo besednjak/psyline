@@ -2,8 +2,10 @@ package com.uade.psyline.infra.repository.mysql.dao;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
@@ -23,8 +25,8 @@ public class WorkingTimeDAO {
     private TherapistDAO therapist;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private DayOfWeek dayOfWeek;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
     @Column(nullable = false)
     private LocalTime startTime;

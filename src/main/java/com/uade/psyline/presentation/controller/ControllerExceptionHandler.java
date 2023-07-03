@@ -1,5 +1,6 @@
 package com.uade.psyline.presentation.controller;
 
+import com.uade.psyline.application.exception.JournalEntryNotFoundException;
 import com.uade.psyline.application.exception.PatientNotFoundException;
 import com.uade.psyline.application.exception.TherapistNotFoundException;
 import com.uade.psyline.presentation.exception.ApiError;
@@ -96,5 +97,10 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(TherapistNotFoundException.class)
     public ResponseEntity<ApiError> therapistNotFound(TherapistNotFoundException e) {
         return new ResponseEntity<>(new ApiError("therapist_not_found", e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(JournalEntryNotFoundException.class)
+    public ResponseEntity<ApiError> journalEntryNotFound(JournalEntryNotFoundException e) {
+        return new ResponseEntity<>(new ApiError("journal_entry_not_found", e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 }

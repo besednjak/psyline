@@ -10,6 +10,5 @@ public enum Emotion {
     SARCASTIC,
     ANGRY,
     THINKING,
-    SAD;
-
+    SAD
 }

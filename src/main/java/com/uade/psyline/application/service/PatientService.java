@@ -14,4 +14,8 @@ public interface PatientService {
     PatientDTO deletePatient(String userName);
 
     PatientDTO postJournalEntry(String userName, JournalEntryDTO newJournalEntryDTO);
+
+    PatientDTO updateJournalEntry(String userName, JournalEntryDTO updatedJournalEntryDTO);
+
+    PatientDTO deleteJournalEntry(String userName, Integer journalEntryId);
 }
