@@ -46,6 +46,11 @@ public class TherapistController {
         return new ResponseEntity<>(therapistService.updateTherapistSchedule(userName, newSchedule), HttpStatus.OK);
     }
 
+    @DeleteMapping("/{userName}/schedule/{workingTimeId}")
+    public ResponseEntity<TherapistDTO> deleteTherapistWorkingTime(@PathVariable String userName, @PathVariable Integer workingTimeId) {
+        return new ResponseEntity<>(therapistService.deleteTherapistWorkingTime(userName, workingTimeId), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{userName}")
     public ResponseEntity<TherapistDTO> deleteTherapist(@PathVariable String userName) {
         return new ResponseEntity<>(therapistService.deleteTherapist(userName), HttpStatus.OK);
