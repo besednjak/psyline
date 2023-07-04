@@ -190,7 +190,7 @@ INSERT INTO working_time VALUES
                                (56, '2023-08-24', '12:00:00', '11:00:00', 'jperez'),
                                (60, '2023-08-29', '14:00:00', '13:00:00', 'jperez'),
                                (61, '2023-08-29', '15:00:00', '14:00:00', 'jperez'),
-                               (62, '2023-08-29', '11:00:00', '10:00:00', 'jperez');
+                               (62, '2023-08-29', '12:00:00', '11:00:00', 'jperez');
 
 INSERT INTO appointments VALUES
                         (1, '2023-07-11T13:00:00', '', false, 5000, 'CONFIRMADO', 'VIRTUAL', 'pJuanetes', 'jperez'),
