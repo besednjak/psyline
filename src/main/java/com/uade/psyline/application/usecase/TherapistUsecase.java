@@ -1,6 +1,7 @@
 package com.uade.psyline.application.usecase;
 
 import com.uade.psyline.application.exception.TherapistNotFoundException;
+import com.uade.psyline.application.exception.WorkingTimeNotFoundException;
 import com.uade.psyline.application.service.TherapistService;
 import com.uade.psyline.domain.address.CABANeighborhood;
 import com.uade.psyline.domain.therapist.AppointmentModality;
@@ -81,6 +82,20 @@ public class TherapistUsecase implements TherapistService {
     }
 
     @Override
+    @Transactional
+    public TherapistDTO deleteTherapistWorkingTime(String userName, Integer workingTimeId) {
+        TherapistDAO existingTherapistDAO = this.findTherapistByUserName(userName);
+        WorkingTimeDAO existingWorkingTime = this.findWorkingTimeByID(workingTimeId);
+        if( existingTherapistDAO.getUserName() != existingWorkingTime.getTherapist().getUserName()) {
+            throw new WorkingTimeNotFoundException();
+        }
+        workingTimeRepository.delete(existingWorkingTime);
+        existingTherapistDAO.getWorkingSchedule().remove(existingWorkingTime);
+
+        return mapper.map(existingTherapistDAO, TherapistDTO.class);
+    }
+
+    @Override
     public TherapistDTO deleteTherapist(String userName) {
         TherapistDAO therapistFoundDAO = this.findTherapistByUserName(userName);
         therapistRepository.delete(therapistFoundDAO);
@@ -133,5 +148,13 @@ public class TherapistUsecase implements TherapistService {
             throw new TherapistNotFoundException();
         }
         return therapistFoundDAO;
+    }
+
+    private WorkingTimeDAO findWorkingTimeByID(Integer id) {
+        WorkingTimeDAO workingTimeDAO = workingTimeRepository.findWorkingTimeById(id);
+        if(workingTimeDAO == null) {
+            throw new WorkingTimeNotFoundException();
+        }
+        return workingTimeDAO;
     }
 }

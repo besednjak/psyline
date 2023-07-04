@@ -45,6 +45,7 @@ public class PatientController {
         return new ResponseEntity<>(patientService.updateJournalEntry(userName, updatedJournalEntryDTO), HttpStatus.OK);
     }
 
+    @ResponseBody
     @DeleteMapping("/{userName}/journal/{journalEntryId}")
     public ResponseEntity<PatientDTO> deleteJournalEntry(@PathVariable String userName, @PathVariable Integer journalEntryId) {
         return new ResponseEntity<>(patientService.deleteJournalEntry(userName, journalEntryId), HttpStatus.OK);

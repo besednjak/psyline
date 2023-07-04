@@ -69,9 +69,7 @@ public class PatientUsecase implements PatientService {
         JournalEntryDAO newJournalEntryDAO = mapper.map(newJournalEntryDTO, JournalEntryDAO.class);
         newJournalEntryDAO.setPatient(patientFoundDAO);
         journalEntryRepository.save(newJournalEntryDAO);
-        PatientDTO patientDTO = mapper.map(patientFoundDAO, PatientDTO.class);
-
-        return patientDTO;
+        return  mapper.map(patientFoundDAO, PatientDTO.class);
     }
 
     @Override

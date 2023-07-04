@@ -3,6 +3,7 @@ package com.uade.psyline.presentation.controller;
 import com.uade.psyline.application.exception.JournalEntryNotFoundException;
 import com.uade.psyline.application.exception.PatientNotFoundException;
 import com.uade.psyline.application.exception.TherapistNotFoundException;
+import com.uade.psyline.application.exception.WorkingTimeNotFoundException;
 import com.uade.psyline.presentation.exception.ApiError;
 import com.uade.psyline.presentation.exception.ApiException;
 import org.slf4j.Logger;
@@ -102,5 +103,10 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(JournalEntryNotFoundException.class)
     public ResponseEntity<ApiError> journalEntryNotFound(JournalEntryNotFoundException e) {
         return new ResponseEntity<>(new ApiError("journal_entry_not_found", e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(WorkingTimeNotFoundException.class)
+    public ResponseEntity<ApiError> workingTimeNotFound(WorkingTimeNotFoundException e) {
+        return new ResponseEntity<>(new ApiError("working_time_not_found", e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 }

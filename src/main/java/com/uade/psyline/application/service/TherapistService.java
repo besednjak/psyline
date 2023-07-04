@@ -23,4 +23,5 @@ public interface TherapistService {
 
     TherapistDTO updateTherapistSchedule(String userName, Set<WorkingTimeDTO> newSchedule);
 
+    TherapistDTO deleteTherapistWorkingTime(String userName, Integer workingTimeId);
 }
