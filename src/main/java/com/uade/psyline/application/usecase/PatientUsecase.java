@@ -16,7 +16,6 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -77,29 +76,24 @@ public class PatientUsecase implements PatientService {
     @Transactional
     public PatientDTO updateJournalEntry(String userName, JournalEntryDTO updatedJournalEntryDTO) {
         JournalEntryDAO existingJournalEntryDAO = this.findJournalEntryBy(updatedJournalEntryDTO.getId());
-        PatientDAO patientFoundDAO = this.findPatientByUserName(userName);
-        if(existingJournalEntryDAO.getPatient() != patientFoundDAO){
-            throw new JournalEntryNotFoundException();
-        }
         JournalEntryDAO updatedJournalEntryDAo = mapper.map(updatedJournalEntryDTO, JournalEntryDAO.class);
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
         mapper.map(updatedJournalEntryDAo, existingJournalEntryDAO);
         journalEntryRepository.save(existingJournalEntryDAO);
 
-
+        PatientDAO patientFoundDAO = this.findPatientByUserName(userName);
         return mapper.map(patientFoundDAO, PatientDTO.class);
     }
 
     @Override
+    @Transactional
     public PatientDTO deleteJournalEntry(String userName, Integer journalEntryId) {
         JournalEntryDAO existingJournalEntryDAO = this.findJournalEntryBy(journalEntryId);
-        PatientDAO patientFoundDAO = this.findPatientByUserName(userName);
-        if (!Objects.equals(existingJournalEntryDAO.getPatient().getUserName(), patientFoundDAO.getUserName())) {
-            throw new JournalEntryNotFoundException();
-        }
         journalEntryRepository.delete(existingJournalEntryDAO);
-        return mapper.map(this.findPatientByUserName(userName), PatientDTO.class);
+
+        PatientDAO patientFoundDAO = this.findPatientByUserName(userName);
+        return mapper.map(patientFoundDAO, PatientDTO.class);
     }
 
     private PatientDAO findPatientByUserName(String userName) {

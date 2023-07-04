@@ -3,6 +3,7 @@ package com.uade.psyline.presentation.dto;
 import lombok.*;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @AllArgsConstructor
@@ -13,7 +14,7 @@ import java.time.LocalTime;
 public class WorkingTimeDTO {
 
     private Integer id;
-    private DayOfWeek dayOfWeek;
+    private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
 
