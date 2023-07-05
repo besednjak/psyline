@@ -193,8 +193,8 @@ INSERT INTO working_time VALUES
                                (62, '2023-08-29', '12:00:00', '11:00:00', 'jperez');
 
 INSERT INTO appointments VALUES
-                        (1, '2023-07-11T13:00:00', '', false, 5000, 'CONFIRMADO', 'VIRTUAL', 'pJuanetes', 'jperez'),
-                        (2, '2023-07-13T13:00:00', '', true, 5000, 'CONFIRMADO', 'VIRTUAL', 'pJuanetes', 'jperez');
+                        (500, '2023-07-11T13:00:00', '', false, 5000, 'CONFIRMADO', 'VIRTUAL', 'pJuanetes', 'jperez'),
+                        (501, '2023-07-13T13:00:00', '', true, 5000, 'CONFIRMADO', 'VIRTUAL', 'pJuanetes', 'jperez');
 
 INSERT INTO quotes VALUES
                        (1,'Aunque nadie puede volver atrás y hacer un nuevo comienzo, cualquiera puede comenzar a partir de ahora y crear un nuevo final. Carl Bard'),
